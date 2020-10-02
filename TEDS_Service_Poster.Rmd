@@ -301,9 +301,9 @@ levels(joined$category_name)
 ```
 
 
-
+Creating functions that may make my Shiny app run clearer
 ```{r}
- 
+ #This is the retrieve names function. THis was created to chunk the variables of interest into meaningful groups. In the shiny app, I have created different user interfaces for various categories of interest (screening, service modality, ect.). Pulls the service names for each topic of interest in a way that is readible by the selectInput(choices = ) command. 
 retrieve_names <- function(data, cat_name_input) {
   
 intermed <- data %>%
@@ -313,16 +313,8 @@ droplevels(intermed$service_name) %>%
   levels()
 }
 
-retrieve_names(joined, "Screening & Testing")
-
-
-levels(joined$category_name)
-list_of_options <- paste("'", as.character(levels(joined$service_name)),"'", collapse = ", ", sep ="")
-
-
-
-plot_function <- function(data = joined, input_spec) {
-  
+#This function is underdevelopment. In its final form, it should be able to create a stacked bar graph showing the distribution of the input across the CBSAs. 
+plot_function_prop <- function(data = joined, input_spec) {
   data %>% 
 filter(service_name == input$input_spec) %>% 
 ggplot(aes(x= CBSA, fill = value )) + 
@@ -335,12 +327,7 @@ ggplot(aes(x= CBSA, fill = value )) +
         )
 }
 
-
-plot_function(input_spec = "Screening and Testing")
-
-retr
-retrieve_names(joined, "Service Settings (e.g., Outpatient, Residential, Inpatient, etc.)")
-
+fjs
 ```
 
 
@@ -349,8 +336,18 @@ library(shiny)
 
 ui <- fluidPage(
   
-  titlePanel("Visualzing Availibility of Screening Services Across Nebraskan CBSA Regions"),
+  titlePanel(
+    h1(
+    "Generic Study Overview Panel")
+    ),
   
+  mainPanel(
+    p("Description of the project and why we are creating this application.")
+  ),
+  
+   titlePanel(
+    h2("Visualzing Availibility of Screening Services Across Nebraskan CBSA Regions", align = "left")
+      ),
   sidebarLayout(
     sidebarPanel(
       selectInput(
@@ -366,7 +363,7 @@ ui <- fluidPage(
           )
     )
   ),
-
+  
 titlePanel("Visualzing Availibility of Service Settings Across Nebraskan CBSA Regions"),
 
 sidebarLayout(
@@ -383,7 +380,9 @@ sidebarLayout(
                   tabPanel("Proportion", plotOutput("setting_prop"))
     )
   )
-)
+),
+
+mainPanel()
 )
 
 
@@ -399,7 +398,7 @@ ggplot(aes(x= CBSA, fill = value )) +
   geom_bar() +
   theme_classic() +
         labs(
-         title = paste("Count of facilities offering", input$screening_input, "across CBSA"),
+         title = paste("Count of facilities offering", str_to_lower(input$screening_input), "across CBSA"),
          x = "CBSA Regions",
          y = "Count"
         )
@@ -414,16 +413,44 @@ ggplot(aes(x= CBSA, fill = value )) +
   geom_bar(position = "fill") +
   theme_classic() +
         labs(
-         title = paste("Proportion of facilities offering", input$screening_input, "across CBSA"),
+         title = paste("Proportion of facilities offering", str_to_lower(input$screening_input), "across CBSA"),
          x = "CBSA Regions",
          y = "Proportion"
-        ) +
-    theme(
-      legend.title = 'Service offerings'
-    )
-             
+        ) 
     }
 )
+
+
+output$setting_count <- renderPlot({
+  joined %>% 
+    filter(service_name == input$setting_input) %>% 
+    ggplot(aes(CBSA, fill = value)) +
+    geom_bar() +
+    theme_classic() +
+      labs(
+        title = paste("Count of facilities offering services via the", str_to_lower(input$setting_input), "modality across CBSA"), 
+        x = "CBSA Regions",
+        y = "Count"
+      )
+  }
+)
+
+output$setting_prop <- renderPlot({
+  joined %>% 
+    filter(service_name == input$setting_input) %>% 
+    ggplot(aes(CBSA, fill = value)) +
+    geom_bar(position = "fill") +
+    theme_classic() +
+      labs(
+        title = paste("Proportion of facilities offering services via the", str_to_lower(input$setting_input), "modality across CBSA"), 
+        x = "CBSA Regions",
+        y = "Count"
+      )
+  }
+)
+
+
+
 }
 
 shinyApp(ui = ui, server = server)
