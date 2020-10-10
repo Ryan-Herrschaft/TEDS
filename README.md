@@ -1,11 +1,10 @@
-# Authorship Header
-
-
-Analysis of Nebraskan Admissions to Publically Funded Substance Treatment Centers in 2017 by Core-Based Statistical Areas.
+*Analysis of Nebraskan Admissions to Publically Funded Substance Treatment Centers in 2017 by Core-Based Statistical Areas.*
 
 Patrick Habecker & Ryan Herrschaft
 
 UNL Rural Drug Addiction Research Center
+
+10/10/2020
 
 # EXECUTIVE SUMMARY
 
