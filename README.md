@@ -21,5 +21,6 @@ Other substances are listed at admission, but none appear in more than 10% of ad
 Link to dowload the full report: [insert link]
 
 
-[link to download R code](../master/TEDS_Nebraska_8_graphs_10_10_2020)
+[Download R code here](../master/TEDS_Nebraska_8_graphs_10_10_2020)
+
 *Note: Page is under construction. Last updated 10/10/2020.*
