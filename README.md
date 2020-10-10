@@ -20,4 +20,4 @@ Other substances are listed at admission, but none appear in more than 10% of ad
 
 Link to dowload the full report: [insert link]
 
-Note: Page is under construction. Last updated 10/10/2020.
+*Note: Page is under construction. Last updated 10/10/2020.*
