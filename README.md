@@ -27,6 +27,7 @@ Other substances are listed at admission, but none appear in more than 10% of ad
 Link to dowload the full report: [insert link]
 
 [Download TEDS 2017 Code](https://www.datafiles.samhsa.gov/sites/default/files/field-uploads-protected/studies/TEDS-A-2017/TEDS-A-2017-datasets/TEDS-A-2017-DS0001/TEDS-A-2017-DS0001-bundles-with-study-info/TEDS-A-2017-DS0001-bndl-data-r.zip)
+
 [View R code here](https://github.com/Ryan-Herrschaft/TEDS-Nebraska-2017/blob/master/TEDS_Nebraska_final_10_27_2020.Rmd)
 
-*Note: Page is under construction. Last updated 10/29/2020.*
+*Note: Page is under construction. Last updated 11/03/2020.*
